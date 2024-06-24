@@ -3,8 +3,9 @@ import os
 from langchain_openai import OpenAIEmbeddings
 from langchain.vectorstores import Pinecone as Pineconevs
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+import tiktoken
 
-def fetch_and_store_embeddings(chunks, index_name="quickstart"):
+def fetch_and_store_embeddings(chunks, index_name="rag"):
     embeddings = OpenAIEmbeddings()
     pc = Pinecone(api_key=os.environ.get('PINECONE_API_KEY'))
 
@@ -17,9 +18,9 @@ def fetch_and_store_embeddings(chunks, index_name="quickstart"):
         else:
             print(f'Creating Index {index_name} and embeddings...', end='')
             pc.create_index(
-                name="quickstart",
-                dimension=1536, # Replace with your model dime`nsions
-                metric="cosine", # Replace with your model metric
+                name="rag",
+                dimension=1536,
+                metric="cosine", 
                 spec=ServerlessSpec(
                     cloud="aws",
                     region="us-east-1"
@@ -46,7 +47,6 @@ def chunk_data(data, chunk_size=256, chunk_overlap=10):
     return chunks
 
 def get_embedding_cost(texts):
-    import tiktoken
     enc = tiktoken.encoding_for_model('text-embedding-ada-002')
     total_tokens = sum([len(enc.encode(page.page_content)) for page in texts])
     print(f'Total Tokens: {total_tokens}')
