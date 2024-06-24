@@ -26,9 +26,6 @@ def fetch_and_store_embeddings(chunks, index_name="rag"):
                     region="us-east-1"
                 ) 
             )
-            # pc.create_index(index_name, dimension=1536, metric='cosine', spec=PodSpec(
-            #     environment='gcp-starter'
-            # ))
             vector_store = Pineconevs.from_documents(chunks, embeddings, index_name=index_name)
             print('OK')
             return vector_store

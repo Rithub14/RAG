@@ -1,6 +1,9 @@
 import os
-from langchain.document_loaders import PyPDFLoader
+# from langchain_community.document_loaders import PyPDFLoader
+# from langchain_community.document_loaders import PyMuPDFLoader
+from langchain_community.document_loaders import UnstructuredFileLoader
 from langchain_community.document_loaders import Docx2txtLoader, TextLoader
+
 
 def load_file(file):
     name, extension = os.path.splitext(file)
@@ -8,7 +11,8 @@ def load_file(file):
 
     if extension == '.pdf':
         print(f'Loading {file}')
-        loader = PyPDFLoader(file)
+        loader = UnstructuredFileLoader(file)
+
 
     elif extension == '.docx':
         print(f'Loading {file}')

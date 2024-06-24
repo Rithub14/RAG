@@ -7,3 +7,9 @@ tiktoken
 python-dotenv
 docx2txt
 pypdf
+rapidocr-onnxruntime
+poppler-utils 
+tesseract-ocr
+pillow
+unstructured
+unstructured["all-docs"]
