@@ -9,7 +9,7 @@ def ask_and_get_answer(vector_store, q, k=10):
         "If the answer is not found in the document, kindly state that the information is not available.\n\n"
         f"Question: {q}"
     )
-    llm = ChatOpenAI(model='gpt-3.5-turbo', temperature=0.1)
+    llm = ChatOpenAI(model='gpt-3.5-turbo', temperature=0.0)
     retriever = vector_store.as_retriever(search_type='similarity', search_kwards={'k': k})
     chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever)
     answer = chain.run(context)

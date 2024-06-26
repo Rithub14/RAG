@@ -19,6 +19,21 @@ if __name__ == "__main__":
         initial_sidebar_state="expanded",
     )
 
+    # Allow user to choose between default or custom keys
+    use_default_keys = st.checkbox('Use Default API Keys', value=True)
+
+    if use_default_keys:
+        openai_api_key = os.getenv('OPENAI_API_KEY')
+        pinecone_api_key = os.getenv('PINECONE_API_KEY')
+    else:
+        openai_api_key = st.text_input('OpenAI API Key:', type='password')
+        pinecone_api_key = st.text_input('Pinecone API Key:', type='password')
+
+    # Set environment variables only if user entered custom keys
+    if openai_api_key and pinecone_api_key and not use_default_keys:
+        os.environ['OPENAI_API_KEY'] = openai_api_key
+        os.environ['PINECONE_API_KEY'] = pinecone_api_key
+
     st.subheader('RAG')
     st.write('Upload a pdf, txt, or docx using the sidebar to the left to ask the LLM expert questions.')
     st.divider()
@@ -28,16 +43,9 @@ if __name__ == "__main__":
     st.divider()
 
     with st.sidebar:
-        openai_api_key = st.text_input('OpenAI API Key:', type='password')
-        pinecone_api_key = st.text_input('Pinecone API Key:', type='password')
-
-        if openai_api_key and pinecone_api_key:
-            os.environ['OPENAI_API_KEY'] = openai_api_key
-            os.environ['PINECONE_API_KEY'] = pinecone_api_key
-
         uploaded_file = st.file_uploader('Upload a file: ', type=['pdf', 'docx', 'txt'])
-        chunk_size = st.number_input('Chunk size:', min_value=100, max_value=2048, value=1024, on_change=clear_history)
-        k = st.number_input('k', min_value=5, max_value=20, value=10, on_change=clear_history)
+        chunk_size = st.number_input('Chunk size:', min_value=100, max_value=2048, value=512, on_change=clear_history)
+        k = st.number_input('k', min_value=3, max_value=20, value=5, on_change=clear_history)
         add_data = st.button('Upload File', on_click=clear_history)
 
         if uploaded_file and add_data:

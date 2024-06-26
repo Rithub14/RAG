@@ -3,6 +3,7 @@ import os
 from langchain_openai import OpenAIEmbeddings
 from langchain.vectorstores import Pinecone as Pineconevs
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_core.documents import Document
 import tiktoken
 
 def fetch_and_store_embeddings(chunks, index_name="rag"):
@@ -38,13 +39,16 @@ def fetch_and_store_embeddings(chunks, index_name="rag"):
         else:
             raise e
 
-def chunk_data(data, chunk_size=256, chunk_overlap=10):
+def chunk_data(data, chunk_size=512, chunk_overlap=10):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
-    chunks = text_splitter.split_documents(data)
-    return chunks
+    chunks = text_splitter.split_text(data)
+    documents = [Document(page_content=chunk) for chunk in chunks] 
+    return documents
 
 def get_embedding_cost(texts):
     enc = tiktoken.encoding_for_model('text-embedding-ada-002')
-    total_tokens = sum([len(enc.encode(page.page_content)) for page in texts])
+    # Convert documents back to strings for embedding
+    string_data = [doc.page_content for doc in texts]
+    total_tokens = sum(len(enc.encode(text)) for text in string_data)
     print(f'Total Tokens: {total_tokens}')
     return total_tokens, total_tokens/1000 * 0.0004
