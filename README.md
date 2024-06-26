@@ -11,8 +11,8 @@ RAG is a Streamlit web application powered by LangChain and OpenAI's GPT-3.5 mod
 - View chat history and manage Pinecone indexes directly from the interface.
 
 ### API Key Configuration (Optional)
-- By default, RAG utilizes built-in OpenAI and Pinecone API keys. However, you can optionally configure your own API keys for increased control.
+- By default, RAG utilizes already provided OpenAI and Pinecone API keys. However, you can optionally configure your own API keys for increased control.
 
-- Use Default API Keys: This option (checked by default) leverages the provided API keys for both OpenAI and Pinecone.
+- **Use Default API Keys:** This option (checked by default) leverages the provided API keys for both OpenAI and Pinecone.
 
-- Custom API Keys: Untick the "Use Default API Keys" checkbox to reveal input fields for entering your own OpenAI and Pinecone API keys.
+- **Custom API Keys:** Untick the "Use Default API Keys" checkbox to reveal input fields for entering your own OpenAI and Pinecone API keys.
