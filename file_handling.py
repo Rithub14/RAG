@@ -1,6 +1,7 @@
 import os
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.document_loaders import Docx2txtLoader, TextLoader
+from langchain_community.document_loaders.csv_loader import CSVLoader
 
 
 def load_file(file):
@@ -16,7 +17,12 @@ def load_file(file):
         loader = Docx2txtLoader(file)
 
     elif extension == '.txt':
+        print(f'Loading {file}')
         loader = TextLoader(file) 
+
+    elif extension == '.csv':
+        print(f'Loading {file}')
+        loader = CSVLoader(file, autodetect_encoding=True)
 
     else:
         print('Format Not Supported.')

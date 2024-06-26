@@ -1,7 +1,7 @@
 from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI
 
-def ask_and_get_answer(vector_store, q, k=10):
+def ask_and_get_answer(vector_store, q, k=5):
     context = (
         "Instructions: You are a helpful assistant that answers questions based on the content of a document. "
         "The document contains information related to various topics. "
