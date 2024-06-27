@@ -13,3 +13,4 @@ tesseract-ocr
 pillow
 python-pptx
 openpyxl
+selenium
