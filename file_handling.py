@@ -2,6 +2,7 @@ import os
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.document_loaders import Docx2txtLoader, TextLoader
 from langchain_community.document_loaders.csv_loader import CSVLoader
+from pptx import Presentation
 
 
 def load_file(file):
@@ -23,6 +24,17 @@ def load_file(file):
     elif extension == '.csv':
         print(f'Loading {file}')
         loader = CSVLoader(file, autodetect_encoding=True)
+    
+    elif extension == '.pptx':
+        print(f'Loading {file} (using python-pptx for basic text extraction)')
+        # Use python-pptx to extract text from slides
+        prs = Presentation(file)
+        all_text = ""
+        for slide in prs.slides:
+            for shape in slide.shapes:
+                if shape.has_text_frame:
+                    all_text += shape.text_frame.text + "\n"
+        return all_text
 
     else:
         print('Format Not Supported.')

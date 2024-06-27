@@ -11,5 +11,4 @@ rapidocr-onnxruntime
 poppler-utils 
 tesseract-ocr
 pillow
-unstructured
-unstructured["all-docs"]
+python-pptx
