@@ -11,3 +11,4 @@ python-pptx
 openpyxl
 selenium
 unstructured
+psutil
