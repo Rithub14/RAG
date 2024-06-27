@@ -87,7 +87,7 @@ if __name__ == "__main__":
                             chunks = chunk_data(data=data, chunk_size=chunk_size)
                             st.write(f'Chunk size: {chunk_size}, Chunks: {len(chunks)}')
                             tokens, embedding_cost = get_embedding_cost(texts=chunks)
-                            st.write(f'Embedding cost: ${embedding_cost:.4f}')
+                            st.write(f'Embedding cost: ${embedding_cost:.4f}') 
                             vector_store = fetch_and_store_embeddings(index_name="rag", chunks=chunks)
                             st.session_state.vs = vector_store
                             st.success('URL content processed, chunked, and vectorized successfully')
@@ -96,7 +96,7 @@ if __name__ == "__main__":
 
 
     query = st.text_input('Ask the LLM a question:')
-    
+
     if query:
         if 'vs' in st.session_state:
             vector_store = st.session_state.vs

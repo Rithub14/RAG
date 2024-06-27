@@ -7,10 +7,6 @@ tiktoken
 python-dotenv
 docx2txt
 pypdf
-rapidocr-onnxruntime
-poppler-utils 
-tesseract-ocr
-pillow
 python-pptx
 openpyxl
 selenium
