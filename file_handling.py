@@ -3,7 +3,7 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.document_loaders import Docx2txtLoader, TextLoader
 from langchain_community.document_loaders.csv_loader import CSVLoader
 from pptx import Presentation
-
+import openpyxl
 
 def load_file(file):
     name, extension = os.path.splitext(file)
@@ -24,10 +24,20 @@ def load_file(file):
     elif extension == '.csv':
         print(f'Loading {file}')
         loader = CSVLoader(file, autodetect_encoding=True)
+
+    elif extension == '.xlsx':
+        print(f'Loading {file}')
+        workbook = openpyxl.load_workbook(filename=file, data_only=True)
+        sheet = workbook.active
+        all_text = ""
+        for row in sheet.iter_rows():
+            for cell in row:
+                all_text += str(cell.value) + "\t"
+            all_text += "\n"
+        return all_text
     
     elif extension == '.pptx':
-        print(f'Loading {file} (using python-pptx for basic text extraction)')
-        # Use python-pptx to extract text from slides
+        print(f'Loading {file}')
         prs = Presentation(file)
         all_text = ""
         for slide in prs.slides:

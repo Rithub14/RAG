@@ -12,3 +12,4 @@ poppler-utils
 tesseract-ocr
 pillow
 python-pptx
+openpyxl
