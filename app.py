@@ -12,6 +12,10 @@ def clear_history():
         del st.session_state['history']
         delete_pinecone_index()
 
+def ensure_directory_exists(directory):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
 if __name__ == "__main__":
     load_dotenv(find_dotenv(), override=True)
     st.set_page_config(
@@ -54,6 +58,7 @@ if __name__ == "__main__":
             if uploaded_file and add_data:
                 with st.spinner('Processing File...'):
                     bytes_data = uploaded_file.read()
+                    ensure_directory_exists('files')
                     file_name = os.path.join('files/', uploaded_file.name)
                     with open(file_name, 'wb') as f:
                         f.write(bytes_data)
