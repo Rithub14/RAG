@@ -19,7 +19,6 @@ if __name__ == "__main__":
         initial_sidebar_state="expanded",
     )
 
-    # Allow user to choose between default or custom keys
     use_default_keys = st.checkbox('Use Default API Keys', value=True)
 
     if use_default_keys:
@@ -29,7 +28,6 @@ if __name__ == "__main__":
         openai_api_key = st.text_input('OpenAI API Key:', type='password')
         pinecone_api_key = st.text_input('Pinecone API Key:', type='password')
 
-    # Set environment variables only if user entered custom keys
     if openai_api_key and pinecone_api_key and not use_default_keys:
         os.environ['OPENAI_API_KEY'] = openai_api_key
         os.environ['PINECONE_API_KEY'] = pinecone_api_key
@@ -45,7 +43,6 @@ if __name__ == "__main__":
 
 
     with st.sidebar:
-        # Allow user to choose between upload or URL
         data_source = st.radio("Data Source:", ("Upload File", "Enter URL"))
         
         if data_source == "Upload File":
@@ -99,6 +96,7 @@ if __name__ == "__main__":
 
 
     query = st.text_input('Ask the LLM a question:')
+    
     if query:
         if 'vs' in st.session_state:
             vector_store = st.session_state.vs
