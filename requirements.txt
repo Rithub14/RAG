@@ -9,6 +9,5 @@ docx2txt
 pypdf
 python-pptx
 openpyxl
-selenium
 unstructured
 psutil
