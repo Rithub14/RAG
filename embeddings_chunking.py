@@ -6,7 +6,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 import tiktoken
 
-def fetch_and_store_embeddings(chunks, index_name="rag"):
+def fetch_and_store_embeddings(chunks, index_name="rizwan-aslam-rag-project"):
     embeddings = OpenAIEmbeddings()
     pc = Pinecone(api_key=os.environ.get('PINECONE_API_KEY'))
 

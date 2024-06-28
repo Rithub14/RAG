@@ -62,7 +62,7 @@ if __name__ == "__main__":
                             st.write(f'Chunk size: {chunk_size}, Chunks: {len(chunks)}')
                             tokens, embedding_cost = get_embedding_cost(texts=chunks)
                             st.write(f'Embedding cost: ${embedding_cost:.4f}')
-                            vector_store = fetch_and_store_embeddings(index_name="rag", chunks=chunks)
+                            vector_store = fetch_and_store_embeddings(index_name="rizwan-aslam-rag-project", chunks=chunks)
                             st.session_state.vs = vector_store
                             st.success('Document processed, chunked, and vectorized successfully')
                         else:
@@ -84,7 +84,7 @@ if __name__ == "__main__":
                             st.write(f'Chunk size: {chunk_size}, Chunks: {len(chunks)}')
                             tokens, embedding_cost = get_embedding_cost(texts=chunks)
                             st.write(f'Embedding cost: ${embedding_cost:.4f}') 
-                            vector_store = fetch_and_store_embeddings(index_name="rag", chunks=chunks)
+                            vector_store = fetch_and_store_embeddings(index_name="rizwan-aslam-rag-project", chunks=chunks)
                             st.session_state.vs = vector_store
                             st.success('URL content processed, chunked, and vectorized successfully')
                         else:

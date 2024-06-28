@@ -4,7 +4,8 @@ from langchain_community.document_loaders import Docx2txtLoader, TextLoader
 from langchain_community.document_loaders.csv_loader import CSVLoader
 from pptx import Presentation
 import openpyxl
-from langchain_community.document_loaders import SeleniumURLLoader
+from langchain_community.document_loaders import UnstructuredURLLoader
+# from langchain_community.document_loaders import SeleniumURLLoader
 
 
 def load_file(file):
@@ -57,7 +58,8 @@ def load_file(file):
         print("extension is ", name[:5])
         print(f'Loading {file}')
         urls = [file]
-        loader = SeleniumURLLoader(urls=urls)
+        loader = UnstructuredURLLoader(urls=urls)
+        # loader = SeleniumURLLoader(urls=urls)
 
     else:
         print('Format Not Supported.')
