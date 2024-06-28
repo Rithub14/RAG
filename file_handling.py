@@ -5,7 +5,9 @@ from langchain_community.document_loaders.csv_loader import CSVLoader
 from pptx import Presentation
 import openpyxl
 # from langchain_community.document_loaders import UnstructuredURLLoader
-from langchain_community.document_loaders import PlaywrightURLLoader
+# from langchain_community.document_loaders import PlaywrightURLLoader
+from langchain_community.document_loaders import WebBaseLoader
+
 
 
 def load_file(file):
@@ -57,8 +59,9 @@ def load_file(file):
     elif name[:5] == 'https':
         print("extension is ", name[:5])
         print(f'Loading {file}')
-        urls = [file]
-        loader = PlaywrightURLLoader(urls=urls)
+        # urls = [file]
+        loader = WebBaseLoader(file)
+        loader.requests_kwargs = {'verify':False}
 
     else:
         print('Format Not Supported.')

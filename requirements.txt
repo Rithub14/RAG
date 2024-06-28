@@ -12,3 +12,4 @@ openpyxl
 unstructured
 psutil
 networkx
+playwright
