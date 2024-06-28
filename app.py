@@ -24,6 +24,9 @@ if __name__ == "__main__":
     openai_api_key = st.text_input('OpenAI API Key:', type='password')
     pinecone_api_key = st.text_input('Pinecone API Key:', type='password')
 
+    st.divider()
+    st.write('Due to the limitations of our current hosting plan, you may experience issues when multiple users access the app simultaneously. We are working to improve this and appreciate your understanding and patience. Please try again in a few minutes. Thank you for your support!')
+
     if openai_api_key and pinecone_api_key:
         os.environ['OPENAI_API_KEY'] = openai_api_key
         os.environ['PINECONE_API_KEY'] = pinecone_api_key
