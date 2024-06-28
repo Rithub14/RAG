@@ -42,6 +42,7 @@ if __name__ == "__main__":
     st.write('By Default OpenaAI and Pinecone API keys are enabled, however you also have an option to use your own OpenAI & Pinecone API Keys.')
     st.write('This app retrieves the contents of the uploaded file or url, chunks them according to the parameters you specify, and then inserts them into Pinecone Vector Database.')
     st.write('Answers are retrieved using Langchain.')
+    st.write('**Note:** Please set "Chunk Size" and "k" before uploading the file or url.')
     st.write('**Note:** To ensure accurate and up-to-date responses, please delete the history and Pinecone index (by clicking the button at the end of the page) before uploading a new file or url for query.')
     st.divider()
 

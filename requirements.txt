@@ -12,4 +12,3 @@ openpyxl
 selenium
 unstructured
 psutil
-networkx
