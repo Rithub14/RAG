@@ -19,7 +19,7 @@ def fetch_and_store_embeddings(chunks, index_name="rizwan-aslam-rag-project"):
         else:
             print(f'Creating Index {index_name} and embeddings...', end='')
             pc.create_index(
-                name="rag",
+                name=index_name,
                 dimension=1536,
                 metric="cosine", 
                 spec=ServerlessSpec(
