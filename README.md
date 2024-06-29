@@ -12,3 +12,6 @@ RAG is a Streamlit web application powered by LangChain and OpenAI's GPT-3.5 mod
 
 ### API Key Configuration
 - You need to have OpenAI and Pinecone API keys to run the app.
+
+### App URL
+- Access the application at: [https://rag-all.streamlit.app/]
